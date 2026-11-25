@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 800 800" width="800" height="800"><rect width="800" height="800" fill="#DEDBD4"/>
+    <path d="M300 200 Q300 110 400 105 Q500 110 500 200 L640 250 L700 600 L620 615 L590 380 L590 680 L210 680 L210 380 L180 615 L100 600 L160 250 Z" fill="#111111"/>
+    <path d="M330 205 Q400 290 470 205 Q470 140 400 140 Q330 140 330 205Z" fill="#000"/>
+    <path d="M300 560 L500 560 L470 640 L330 640 Z" fill="#000"/>
+    <text x="400" y="420" text-anchor="middle" font-family="Impact, 'Anton', 'Arial Narrow', sans-serif" font-weight="700" font-size="64" fill="#F4F2EC">KEEP GOING.</text></svg>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <title>KEEP GOING - Store</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="#" class="logo">KG</a>
+            <div class="header-right">
+                <nav class="navigation">
+                    <a href="#">HOME</a>
+                    <a href="#">ABOUT</a>
+                    <a href="#">TESTIMONIALS</a>
+                    <a href="#">BLOG</a>
+                    <a href="#">CONTACT</a>
+                </nav>
+                <div class="header-actions">
+                    <a href="#">STORE</a>
+                    <a href="#" class="cart-link">
+                        <img src="img/cart.png" alt="корзина">
+                        <span>CART (<span id="cart-count">0</span>)</span>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="catalog">
+                <div class="catalog-header">
+                    <h1>ALL</h1>
+                    <span id="products-count">0</span>
+                </div>
+
+                <div class="catalog-controls">
+                    <div class="categories" id="categories">
+                        <!-- тут js -->
+                    </div>
+                    <div class="search">
+                        <input type="search" id="search-input" placeholder="Search" aria-label="Search"> 
+                        <img src="img/search.png" alt="Search">
+                    </div>
+                </div>
+
+                <div class="products" id="products">
+                    <!-- карточки товаров -->
+                    <!-- тут js -->
+                </div>
+
+                <p id="catalog-message"></p>
+            </section>
+        </main>
+        <footer>
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <p>KEEP GOING.</p>
+                </div>
+
+                <div class="footer-links">
+                    <a href="#">HOME</a>
+                    <a href="#">ABOUT</a>
+                    <a href="#">BLOG</a>
+                    <a href="#">TESTIMONIALS</a>
+                    <a href="#">CONTACT</a>                   
+                </div>
+
+                <div class="footer-links-store">
+                    <a href="#">STORE</a>  
+                </div>
+
+                <div class="newsletter">
+                    <p>SIGN UP TO OUR NEWSLETTER</p>
+                    <form id="newsletter-form">
+                        <input type="email" id="newsletter-email" placeholder="Your email">
+                        <button type="submit"><img src="img/arrow_footer.png" alt="arrow"></button>
+                    </form>
+                    <p id="newsletter-message"></p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>KEEP GOING.</p>
+            </div>
+        </footer>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

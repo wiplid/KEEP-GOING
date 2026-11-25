@@ -1,0 +1,14 @@
+{
+  "name": "kg-store-api",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "private": true,
+  "engines": { "node": ">=22.13" },
+  "scripts": {
+    "start": "node --no-warnings src/server.js",
+    "dev": "node --no-warnings --watch src/server.js",
+    "reset": "node --no-warnings src/reset.js",
+    "test": "node --no-warnings test/smoke.mjs"
+  }
+}

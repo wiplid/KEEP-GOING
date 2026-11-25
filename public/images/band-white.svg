@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 800 800" width="800" height="800"><rect width="800" height="800" fill="#DEDBD4"/>
+<g transform="translate(400 400) rotate(10) scale(1)">
+  <ellipse cx="0" cy="22" rx="250" ry="125" fill="#BDB9B0"/>
+  <ellipse cx="0" cy="0" rx="250" ry="125" fill="#F4F2EC"/>
+  <ellipse cx="0" cy="-34" rx="205" ry="80" fill="#E2DFD8"/>
+  <ellipse cx="0" cy="-44" rx="205" ry="74" fill="#DEDBD4"/>
+  <text x="0" y="98" text-anchor="middle" font-family="Impact, 'Anton', 'Arial Narrow', sans-serif" font-weight="700" font-size="40" letter-spacing="3" fill="#111111">KEEP GOING®</text>
+</g></svg>
