@@ -1,6 +1,7 @@
 const categoriesContainer = document.getElementById("categories");
 let cartId = localStorage.getItem("cartId");
 const productsContainer = document.getElementById("products");
+const showMoreButton = document.querySelector(".show-more");
 const searchInput = document.getElementById("search-input");
 
 let searchTimer;
@@ -63,60 +64,97 @@ if (cartId) {
         });
 }
 
+
+showMoreButton.addEventListener("click", () => {
+    productsContainer.classList.add("show-all");
+    showMoreButton.style.display = "none";
+});
+
 /* каталог */
 fetch("http://localhost:3000/api/categories")
     .then(response => response.json())
     .then(data => {
         document.getElementById("products-count").textContent = data.total;
 
+        /* кнопка All */
+        const allButton = document.createElement("button");
+        allButton.textContent = `All (${data.total})`;
+        allButton.classList.add("active");
+        categoriesContainer.append(allButton);
+
+        /* общая функция для всех категорий */
+        function selectCategory(category, button) {
+            selectedCategory = category;
+
+            categoriesContainer.querySelectorAll("button").forEach(button => {
+                button.classList.remove("active");
+            });
+
+            button.classList.add("active");
+
+            const params = new URLSearchParams();
+
+            if (selectedCategory) {
+                params.append("category", selectedCategory);
+            }
+
+            if (searchInput.value) {
+                params.append("search", searchInput.value);
+            }
+
+            showSkeletons();
+
+            fetch(`http://localhost:3000/api/products?${params}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Ошибка сервера");
+                    }
+
+                    return response.json();
+                })
+                .then(data => {
+                    showProducts(data.items);
+
+                    /* это если на сайте больше 4 карточек в адаптиве то он делает кнопку */
+                    if (data.items.length <= 4) {
+                        showMoreButton.style.display = "none";
+                    } else {
+                        showMoreButton.style.display = "";
+                        showMoreButton.textContent = `SHOW MORE (${data.items.length - 4})`;
+                    }
+
+                    document.getElementById("products-count").textContent = data.total;
+                })
+                .catch(() => {
+                    productsContainer.innerHTML = "";
+
+                    const message = document.createElement("p");
+                    message.classList.add("empty-message");
+                    message.textContent = "Сервер недоступен. Попробуйте позже";
+
+                    productsContainer.append(message);
+                });
+        }
+
+        /* обработчик кнопки All */
+        allButton.addEventListener("click", () => {
+            selectCategory("", allButton);
+        });
+
+        /* остальные кнопки */
         data.items.forEach(category => {
             const categoryElement = document.createElement("button");
             categoryElement.textContent = `${category.name} (${category.productsCount})`;
 
             categoryElement.addEventListener("click", () => {
-                selectedCategory = category.slug;
-
-                categoriesContainer.querySelectorAll("button").forEach(button => {
-                    button.classList.remove("active");
-                });
-
-                categoryElement.classList.add("active");
-
-                const params = new URLSearchParams();
-                params.append("category", selectedCategory);
-
-                if (searchInput.value) {
-                    params.append("search", searchInput.value);
-                }
-
-                showSkeletons();
-
-                fetch(`http://localhost:3000/api/products?${params}`)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error("Ошибка сервера");
-                        }
-
-                        return response.json();
-                    })
-                    .then(data => {
-                        showProducts(data.items);
-                        document.getElementById("products-count").textContent = data.total;
-                    })
-                    .catch(() => {
-                        productsContainer.innerHTML = "";
-
-                        const message = document.createElement("p");
-                        message.classList.add("empty-message");
-                        message.textContent = "Сервер недоступен. Попробуйте позже";
-
-                        productsContainer.append(message);
-                    });
+                selectCategory(category.slug, categoryElement);
             });
 
             categoriesContainer.append(categoryElement);
         });
     });
+
+
 
 /* поиск */
 searchInput.addEventListener("input", () => {
@@ -145,6 +183,15 @@ searchInput.addEventListener("input", () => {
             })
             .then(data => {
                 showProducts(data.items);
+
+                /* тоже самое про 4 карточки */
+                if (data.items.length <= 4) {
+                    showMoreButton.style.display = "none";
+                } else {
+                    showMoreButton.style.display = "";
+                    showMoreButton.textContent = `SHOW MORE (${data.items.length - 4})`;
+                }
+
                 document.getElementById("products-count").textContent = data.total;
             })
             .catch(() => {
@@ -172,6 +219,14 @@ fetch("http://localhost:3000/api/products")
     })
     .then(data => {
         showProducts(data.items);
+
+        /* все те же 4 карточки */
+        if (data.items.length <= 4) {
+            showMoreButton.style.display = "none";
+        } else {
+            showMoreButton.style.display = "";
+            showMoreButton.textContent = `SHOW MORE (${data.items.length - 4})`;
+        }
 
         document.getElementById("products-count").textContent = data.total;
     })
